@@ -33,8 +33,8 @@ public class SaveUser
         saveUser.setUserName(json.get("username").getAsString());
         saveUser.setPassword(json.get("password").getAsString());
         saveUser.AddRole("User");
-        UserFacade f = new UserFacade();
-        f.saveUser(saveUser);
+        UserFacade uf = new UserFacade();
+        uf.saveUser(saveUser);
         JsonObject responseJson = new JsonObject();
         responseJson.addProperty("username", saveUser.getUserName());
         return Response.ok(new Gson().toJson(responseJson)).build();
