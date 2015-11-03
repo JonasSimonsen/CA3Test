@@ -1,10 +1,13 @@
 package facades;
 
 import entity.User;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import security.PasswordHash;
 
 public class UserFacade
 {
@@ -58,10 +61,12 @@ public class UserFacade
      Return the Roles if users could be authenticated, otherwise null
      */
 
-    public List<String> authenticateUser(String userName, String password)
+    public List<String> authenticateUser(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         User user = getUserByUserId(userName);
-        return user != null && user.getPassword().equals(password) ? user.getRoles() : null;
+        return user != null && PasswordHash.validatePassword(password, user.getPassword()) ? user.getRoles() : null;
+        
+        
     }
 
 }

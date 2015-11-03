@@ -10,12 +10,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import entity.User;
 import facades.UserFacade;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import security.PasswordHash;
 /**
  *
  * @author jonassimonsen
@@ -26,12 +29,12 @@ public class SaveUser
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response saveUser(String user)
+    public Response saveUser(String user) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         JsonObject json = new JsonParser().parse(user).getAsJsonObject();
         User saveUser = new User();
         saveUser.setUserName(json.get("username").getAsString());
-        saveUser.setPassword(json.get("password").getAsString());
+        saveUser.setPassword(PasswordHash.createHash(json.get("password").getAsString()));
         saveUser.AddRole("User");
         UserFacade uf = new UserFacade();
         uf.saveUser(saveUser);
