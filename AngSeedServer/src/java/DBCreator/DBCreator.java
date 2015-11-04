@@ -35,5 +35,10 @@ public class DBCreator {
         
         a.AddRole("Admin");
         uf.saveUser(a);
+                
+        User au = new User("both", PasswordHash.createHash("test"));
+        au.AddRole("Admin");
+        au.AddRole("User");
+        uf.saveUser(au);
     }
 }
