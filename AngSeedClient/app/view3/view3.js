@@ -9,13 +9,22 @@ angular.module('myApp.view3', ['ngRoute'])
   });
 }])
 
-.controller('View3Ctrl', function($http,$scope) {
-  $http.get('api/demoadmin')
-            .success(function (data, status, headers, config) {
-              $scope.data = data;
-            })
-            .error(function (data, status, headers, config) {
-              
-             });
- 
-});
+.controller('View3Ctrl', function ($http) {
+    var self = this;
+    self.searchInput = "";
+    self.searchBy = "";
+    self.country = "";
+    
+    self.search = function(){
+          $http({
+            method: 'GET',
+//            url: 'api/search/' + self.searchBy + '=' + self.searchInput + '&country=' + self.country
+            url: 'api/search/'+self.searchBy+'/'+self.searchInput+'/'+self.country
+          }).then(function(data) {
+            self.data = data.data;
+          }, function (data) {
+           
+          });
+
+        };
+        });

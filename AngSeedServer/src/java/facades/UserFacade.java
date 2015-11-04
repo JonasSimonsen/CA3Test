@@ -64,9 +64,7 @@ public class UserFacade
     public List<String> authenticateUser(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         User user = getUserByUserId(userName);
-        return user != null && PasswordHash.validatePassword(password, user.getPassword()) ? user.getRoles() : null;
-        
-        
+        //Compares password to the hashed version
+        return user != null && PasswordHash.validatePassword(password, user.getPassword()) ? user.getRoles() : null;   
     }
-
 }

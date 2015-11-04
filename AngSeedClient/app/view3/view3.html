@@ -1,5 +1,54 @@
-<h3>This is the partial for view 3.</h3>
-<div>
-  <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
-  <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
+<h3>Get info about companies here!</h3>
+<div ng-controller="View3Ctrl as ctrl">
+    <input type="text" placeholder="Search" ng-model="ctrl.searchInput">
+    <form>
+        <select name="searchBy" ng-model="ctrl.searchBy" required>
+            <option value="vat">CVR</option>
+            <option value="name">Name</option>
+        </select>
+        <br>
+        <select name="country" ng-model="ctrl.country" required>
+            <option value="dk">Denmark  </option>
+            <option value="no">Norway</option>
+        </select>
+        <button ng-click="ctrl.search()">search</button>    
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Cvr</th>
+                <th> Name </th>
+                <th> Address </th>
+                <th> City </th>
+                <th> Phone </th>
+                <th> Mail </th>
+            </tr>
+        </thead>
+        <tr>
+            <td>{{ctrl.data.vat}}</td>
+            <td>{{ctrl.data.name}}</td>
+            <td>{{ctrl.data.address}}</td>
+            <td>{{ctrl.data.city}}</td>
+            <td>{{ctrl.data.phone}}</td>
+            <td>{{ctrl.data.email}}</td>
+        </tr>
+    </table>
+    <uib-accordion>
+        <uib-accordion-group ng-repeat="company in ctrl.data.productionunits" heading={{company.name}} >
+            <table class="table">
+                <th>Address</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <tr>
+                    <td>{{company.address}}</td>
+                    <td>{{company.city}}</td>
+                    <td>{{company.phone}}</td>
+                    <td>{{company.email}}</td>
+                </tr>
+
+            </table>
+        </uib-accordion-group>
+
+    </uib-accordion>
 </div>

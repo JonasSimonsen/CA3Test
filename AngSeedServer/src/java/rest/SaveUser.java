@@ -34,6 +34,7 @@ public class SaveUser
         JsonObject json = new JsonParser().parse(user).getAsJsonObject();
         User saveUser = new User();
         saveUser.setUserName(json.get("username").getAsString());
+        //Saves a hashed version of the password in db
         saveUser.setPassword(PasswordHash.createHash(json.get("password").getAsString()));
         saveUser.AddRole("User");
         UserFacade uf = new UserFacade();
