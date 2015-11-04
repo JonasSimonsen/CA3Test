@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import security.PasswordHash;
 
 public class UserFacade
@@ -51,6 +52,19 @@ public class UserFacade
             em.close();
         }
     }
+    
+        public User deleteUser(String username) {
+        EntityManager em = getEntityManager();
+        try {
+            User p = em.find(User.class, username);
+            em.getTransaction().begin();
+            em.remove(p);
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
+        }
+    }
 
     public User getUserByUserId(String userName)
     {
@@ -66,5 +80,18 @@ public class UserFacade
         User user = getUserByUserId(userName);
         //Compares password to the hashed version
         return user != null && PasswordHash.validatePassword(password, user.getPassword()) ? user.getRoles() : null;   
+    }
+    
+        public List<User> getAllUsers() { //finished
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            TypedQuery<User> q = em.createQuery("select p from User p", User.class);
+            return q.getResultList();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 }

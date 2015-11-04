@@ -11,15 +11,22 @@ angular.module('myApp.view5', ['ngRoute'])
                 $routeProvider.when('/view5', {
                     templateUrl: 'view5/view5.html',
                     controller: 'View5Ctrl'
-            });
-          }])
-     .controller('View5Ctrl', function($http,$scope) {
-  $http.get('api/demoadmin')
-            .success(function (data, status, headers, config) {
-              $scope.data = data;
-            })
-            .error(function (data, status, headers, config) {
-              
-             });
- 
-});
+                });
+            }])
+        .controller('View5Ctrl', function ($http, $scope) {
+//            $scope.username = "";
+            
+            $http.get('api/demoadmin/users/')
+                    .then(function (response) {
+                        $scope.usersFound = true;
+                        $scope.users = response.data;
+                    });
+            $scope.deleteUser = function (x) {
+                $http.delete('api/demoadmin/delete/'+x)
+            }
+//            $scope.updateList = function (response) {
+//                $http.get('api/demoadmin/users/')
+//                $scope.users = response.data;
+//            }
+        });
+
