@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
+<style>h2 {color: darkblue;}</style>
+<style>h3 {color: darkblue;}</style>
+<h2>Create your user account here!</h2>
+<p style="color:#105cb6;font-style: italic; font-size: large">Registration is required in order to navigate through the functionalities of our web application. </p>
 <form class="navbar-form navbar-middle" role="form" ng-submit="saveUser()">
               <div class="form-group">
                 <input type="text" style="width:12em;" placeholder="User name" class="form-control"
@@ -14,6 +11,7 @@ and open the template in the editor.
                 <input type="password" style="width:12em;" placeholder="Password" class="form-control"
                        ng-model="user.password">
               </div>
-              <button type="submit" class="btn btn-success">Create User</button>
+    <button type="submit" class="btn btn-primary">Create User</button>
+              <p style="color:#105cb6;font-style: italic; font-size: large"><b>{{message}}</b></p>
             </form>
 

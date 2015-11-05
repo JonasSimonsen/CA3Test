@@ -22,7 +22,7 @@
                         <p style="color:#105cb6;font-style: bold">{{user.roles}}</p>
                     </td>
                     <td align="right">
-                        <button type="button" class="btn btn-danger" ng-click="deleteUser(user.username)">Delete</button>
+                        <button type="button" class="btn btn-danger" ng-click="deleteUser(user.username); reload()">Delete</button>
                     </td>
                 </tr>
             </tbody>

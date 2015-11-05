@@ -1,0 +1,20 @@
+.jumbotron {
+    background-image:url('pics/headerPic2.jpg');
+    height: 450px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron h1 {
+    color: #fff;
+    font-size: 48px;  
+    font-family: 'Shift', sans-serif;
+    font-weight: bold;
+}
+
+.jumbotron h2 {
+    color: #fff;
+    font-size: 24px;  
+    font-family: 'Shift', sans-serif;
+    font-weight: bold;
+}

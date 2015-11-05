@@ -13,12 +13,13 @@ angular.module('myApp.view6', ['ngRoute'])
                 });
             }])
         .controller('View6Ctrl', function ($scope, $http) {
-            $scope.message = "Create a user to the system!!!";
+            
             $scope.saveUser = function () {
+                $scope.message = "Registration successful!";
 //                alert('User');
                 $http.post('api/saveUser', $scope.user).
                         success(function () {
-                            alert('User Created');
+//                            alert('User Created');
                           });
             };
         });

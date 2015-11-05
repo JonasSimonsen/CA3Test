@@ -22,11 +22,14 @@ angular.module('myApp.view5', ['ngRoute'])
                         $scope.users = response.data;
                     });
             $scope.deleteUser = function (x) {
-                $http.delete('api/demoadmin/delete/'+x)
+                $http.delete('api/demoadmin/delete/'+x)              
             }
-//            $scope.updateList = function (response) {
-//                $http.get('api/demoadmin/users/')
-//                $scope.users = response.data;
-//            }
+           $scope.reload = function (){
+               $http.get('api/demoadmin/users/')
+                    .then(function (response) {
+                        $scope.usersFound = true;
+                        $scope.users = response.data;
+                    });
+           }
         });
 
