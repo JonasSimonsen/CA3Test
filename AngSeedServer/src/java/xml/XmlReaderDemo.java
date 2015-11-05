@@ -1,3 +1,5 @@
+package xml;
+
 //package util;
 //
 import entity.CurrencyRates;
@@ -9,7 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 //
-public class XmlReader extends DefaultHandler implements Runnable {
+public class XmlReaderDemo extends DefaultHandler implements Runnable {
 
     List<CurrencyRates> currencyList = new ArrayList();
     String code = "";
@@ -63,7 +65,7 @@ public class XmlReader extends DefaultHandler implements Runnable {
     public static void main(String[] argv) {
         try {
             XMLReader xr = XMLReaderFactory.createXMLReader();
-            xr.setContentHandler(new XmlReader());
+            xr.setContentHandler(new XmlReaderDemo());
             URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
             xr.parse(new InputSource(url.openStream()));
         } catch (SAXException | IOException e) {
@@ -75,7 +77,7 @@ public class XmlReader extends DefaultHandler implements Runnable {
     public void run() {
         try {
             XMLReader xr = XMLReaderFactory.createXMLReader();
-            xr.setContentHandler(new XmlReader());
+            xr.setContentHandler(new XmlReaderDemo());
             URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
             xr.parse(new InputSource(url.openStream()));
         } catch (SAXException | IOException e) {

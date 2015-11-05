@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('myApp.view4', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
@@ -11,7 +10,10 @@ angular.module('myApp.view4', ['ngRoute'])
             }])
         .controller('View4Ctrl', function ($http) {
             var self = this;
-
+            self.amount = "";
+            self.fromcurrency = "";
+            self.tocurrency = "";
+            self.calculated = "";
             $http({
                 method: 'GET',
                 url: 'api/currency/dailyrates'
@@ -21,5 +23,26 @@ angular.module('myApp.view4', ['ngRoute'])
             }, function (data) {
 
             })
+            
+//            $http({
+//                method: 'GET',
+//                url: 'api/currency/calculator/' + self.amount + '/' + self.fromcurrency + '/' + self.tocurrency
+//            }).then(function (data) {
+//                self.ratio = data.data;
+//            }, function (data) {
+//
+//            });
+            self.calculate = function(){
+                $http({
+                method: 'GET',
+                url: 'api/currency/calculator/' + self.amount + '/' + self.fromcurrency + '/' + self.tocurrency
+            }).then(function (data) {
+                self.calculated = data.data;
+            }, function (data) {
+
+            });
+            }
+
 
         });
+

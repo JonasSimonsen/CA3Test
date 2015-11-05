@@ -27,7 +27,7 @@ public class DBCreator {
 
         UserFacade uf = new UserFacade();
         User u = new User("user", PasswordHash.createHash("test"));
-        
+        System.out.println(u.getPassword());
         u.AddRole("User");
         uf.saveUser(u);
 

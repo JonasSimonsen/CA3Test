@@ -1,5 +1,76 @@
 <h1>Currency</h1>
 
+<div class="container">
+    <form role="form">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Amount" ng-model="ctrl.amount">
+        </div>
+        <div class="form-group">
+
+
+            <select select class="form-control" placeholder="Category" name="currencyFrom" ng-model="ctrl.fromcurrency" required>
+                <option value="" disabled selected>Convert From</option>
+                <option value="PHP">PHP</option>
+                <option value="BRL">BRL</option>
+                <option value="BGN">BGN</option>
+                <option value="MYR">MYR</option>
+                <option value="SGD">SGD</option>
+                <option value="HRK">HRK</option>
+                <option value="ISK">ISK</option>
+                <option value="ZAR">ZAR</option>
+                <option value="GBP">GBP</option>
+                <option value="PLN">PLN</option>
+                <option value="THB">THB</option>
+                <option value="KRW">KRW</option>
+                <option value="ILS">ILS</option>
+                <option value="CAD">CAD</option>
+                <option value="EUR">EUR</option>
+                <option value="RUB">RUB</option>
+                <option value="XDR">XDR</option>
+                <option value="SEK">SEK</option>
+                <option value="CNY">CNY</option>
+                <option value="IDR">IDR</option>
+
+            </select>
+            <br>
+
+            <select select class="form-control" name="currencyTo" ng-model="ctrl.tocurrency" required>
+                <option value="" disabled selected>Convert To</option>
+                <option value="PHP">PHP</option>
+                <option value="BRL">BRL</option>
+                <option value="BGN">BGN</option>
+                <option value="MYR">MYR</option>
+                <option value="SGD">SGD</option>
+                <option value="HRK">HRK</option>
+                <option value="ISK">ISK</option>
+                <option value="ZAR">ZAR</option>
+                <option value="GBP">GBP</option>
+                <option value="PLN">PLN</option>
+                <option value="THB">THB</option>
+                <option value="KRW">KRW</option>
+                <option value="ILS">ILS</option>
+                <option value="CAD">CAD</option>
+                <option value="EUR">EUR</option>
+                <option value="RUB">RUB</option>
+                <option value="XDR">XDR</option>
+                <option value="SEK">SEK</option>
+                <option value="CNY">CNY</option>
+                <option value="IDR">IDR</option>    
+            </select>
+
+
+            <br>
+            <input type="text" class="form-control" placeholder="Converts to.." ng-model="ctrl.calculated">
+            <br>
+            
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.calculate()">Convert</button>
+
+
+            </form>
+        </div>
+</div>
+
+
 <div class="row">
     <div class="col-md-6">
 
@@ -11,7 +82,6 @@
                     <th>Rate</th>
                     <th>Date</th>
                 </tr>
-
             </thead>
             <tbody>
                 <tr ng-repeat="c in ctrl.data">
