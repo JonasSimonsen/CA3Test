@@ -9,7 +9,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import entity.Currency;
+//import entity.Currency;
 import entity.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,16 +49,16 @@ public class JSONConverter {
         return gson.toJson(personList);
     }
     
-    public static String getJSONFromCurrencyList(List<Currency> currencies) {
-        List<JsonObject> currencyList = new ArrayList();
-        for (int i = 0; i < currencies.size(); i++) {
-            JsonObject obj = new JsonObject();
-            obj.addProperty("id", currencies.get(i).getId());
-            obj.addProperty("code", currencies.get(i).getCode());
-            obj.addProperty("description", currencies.get(i).getDescription());
-            obj.addProperty("rate", currencies.get(i).getRate());
-            currencyList.add(obj);
-        }
-        return gson.toJson(currencyList);
-    }
+//    public static String getJSONFromCurrencyList(List<Currency> currencies) {
+//        List<JsonObject> currencyList = new ArrayList();
+//        for (int i = 0; i < currencies.size(); i++) {
+//            JsonObject obj = new JsonObject();
+//            obj.addProperty("id", currencies.get(i).getId());
+//            obj.addProperty("code", currencies.get(i).getCode());
+//            obj.addProperty("description", currencies.get(i).getDescription());
+//            obj.addProperty("rate", currencies.get(i).getRate());
+//            currencyList.add(obj);
+//        }
+//        return gson.toJson(currencyList);
+//    }
 }
