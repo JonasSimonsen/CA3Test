@@ -5,6 +5,7 @@
  */
 package rest;
 
+import facades.CurrencyFacade;
 import facades.UserFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -19,8 +20,10 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import util.JSONConverter;
 
 /**
  * REST Web Service
@@ -31,25 +34,21 @@ import javax.ws.rs.core.MediaType;
 @RolesAllowed("user")
 public class Currency {
 
- UserFacade cc = new UserFacade();
+    CurrencyFacade cc = new CurrencyFacade();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("dailyrates")
-    public String getSomething() throws MalformedURLException, IOException {
-        String urlToUse = "http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en";
-
-        URL url = new URL(urlToUse);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("Accept", "application/json;charset=UTF-8");
-        Scanner scan = new Scanner(con.getInputStream());
-        String jsonStr = null;
-        if (scan.hasNext()) {
-            jsonStr = scan.nextLine();
-        }
-        scan.close();
-        return jsonStr;
+    public String getSomething() {
+        return JSONConverter.getJSONFromCurrencyList(cc.getCurrenciesFromDB());
+    }
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("calculator/:amount/:fromcurrency/:tocurrency")
+    public String calculateRates(@PathParam("amount")double amount,@PathParam("option") String fromCur, @PathParam("searchText") String toCur) {
+        String json = JSONConverter.getJSONFromDouble(cc.convertCurrency(amount, fromCur, toCur));
+        return json;
     }
     
 }
