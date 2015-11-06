@@ -62,16 +62,16 @@ public class XmlReaderDemo extends DefaultHandler implements Runnable {
         }
     }
 
-    public static void main(String[] argv) {
-        try {
-            XMLReader xr = XMLReaderFactory.createXMLReader();
-            xr.setContentHandler(new XmlReaderDemo());
-            URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
-            xr.parse(new InputSource(url.openStream()));
-        } catch (SAXException | IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] argv) {
+//        try {
+//            XMLReader xr = XMLReaderFactory.createXMLReader();
+//            xr.setContentHandler(new XmlReaderDemo());
+//            URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
+//            xr.parse(new InputSource(url.openStream()));
+//        } catch (SAXException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void run() {
@@ -86,4 +86,3 @@ public class XmlReaderDemo extends DefaultHandler implements Runnable {
     }
 
 }
-//    

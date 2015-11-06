@@ -33,7 +33,7 @@ public class Admin {
             +"\"serverTime\": \""+now +"\"}"; 
   }
   
-      @GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("users")
     public String getUsers(){

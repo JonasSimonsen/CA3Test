@@ -10,6 +10,7 @@ angular.module('myApp.view4', ['ngRoute'])
             }])
         .controller('View4Ctrl', function ($http) {
             var self = this;
+            self.searchFor   = '';
             self.amount = "";
             self.fromcurrency = "";
             self.tocurrency = "";
@@ -23,26 +24,15 @@ angular.module('myApp.view4', ['ngRoute'])
             }, function (data) {
 
             })
-            
-//            $http({
-//                method: 'GET',
-//                url: 'api/currency/calculator/' + self.amount + '/' + self.fromcurrency + '/' + self.tocurrency
-//            }).then(function (data) {
-//                self.ratio = data.data;
-//            }, function (data) {
-//
-//            });
-            self.calculate = function(){
+            self.calculate = function () {
                 $http({
-                method: 'GET',
-                url: 'api/currency/calculator/' + self.amount + '/' + self.fromcurrency + '/' + self.tocurrency
-            }).then(function (data) {
-                self.calculated = data.data;
-            }, function (data) {
+                    method: 'GET',
+                    url: 'api/currency/calculator/' + self.amount + '/' + self.fromcurrency + '/' + self.tocurrency
+                }).then(function (data) {
+                    self.calculated = data.data;
 
-            });
+
+
+                })
             }
-
-
         });
-
