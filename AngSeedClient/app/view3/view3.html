@@ -1,71 +1,72 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <h3>Get info about companies here!</h3>
 <div ng-controller="View3Ctrl as ctrl">
-<div class="container">
-    <form role="form">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search" ng-model="ctrl.searchInput">
-        </div>
-        <div class="form-group">
-            
-            
-            <select select class="form-control" placeholder="Category" name="searchBy" ng-model="ctrl.searchBy" required>
-                <option value="" disabled selected>Category</option>
-                <option value="vat">CVR</option>
-                <option value="name">Name</option>
-            </select>
-            <br>
-            
-            <select select class="form-control" name="country" ng-model="ctrl.country" required>
-                <option value="" disabled selected>Country</option>
-                <option value="dk">Denmark </option>
-                <option value="no">Norway</option>
-            </select>
-            <br>
-            <button type="button" class="btn btn-primary" style="width:100px;height:34px" ng-click="ctrl.search()">Search</button> 
-    </form>
-</div>
-</div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th> Cvr</th>
-                    <th> Name </th>
-                    <th> Address </th>
-                    <th> City </th>
-                    <th> Phone </th>
-                    <th> Mail </th>
-                </tr>
-            </thead>
-            <tr>
-                <td>{{ctrl.data.vat}}</td>
-                <td>{{ctrl.data.name}}</td>
-                <td>{{ctrl.data.address}}</td>
-                <td>{{ctrl.data.city}}</td>
-                <td>{{ctrl.data.phone}}</td>
-                <td>{{ctrl.data.email}}</td>
-            </tr>
-        </table>
-        <uib-accordion>
-            <uib-accordion-group ng-repeat="company in ctrl.data.productionunits" heading={{company.name}} >
-                <table class="table">
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <tr>
-                        <td>{{company.address}}</td>
-                        <td>{{company.city}}</td>
-                        <td>{{company.phone}}</td>
-                        <td>{{company.email}}</td>
-                    </tr>
+    <div class="container">
+        <form role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" ng-model="ctrl.searchInput">
+            </div>
+            <div class="form-group">
 
-                </table>
-            </uib-accordion-group>
 
-        </uib-accordion>
+                <select select class="form-control" placeholder="Category" name="searchBy" ng-model="ctrl.searchBy" required>
+                    <option value="" disabled selected>Category</option>
+                    <option value="vat">CVR</option>
+                    <option value="name">Name</option>
+                </select>
+                <br>
+
+                <select select class="form-control" name="country" ng-model="ctrl.country" required>
+                    <option value="" disabled selected>Country</option>
+                    <option value="dk">Denmark </option>
+                    <option value="no">Norway</option>
+                </select>
+                <br>
+                <button type="button" class="btn btn-primary" style="width:100px;height:34px" ng-click="ctrl.search()">Search</button> 
+        </form>
     </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Cvr</th>
+                <th> Name </th>
+                <th> Address </th>
+                <th> City </th>
+                <th> Phone </th>
+                <th> Mail </th>
+            </tr>
+        </thead>
+        <tr>
+            <td>{{ctrl.data.vat}}</td>
+            <td>{{ctrl.data.name}}</td>
+            <td>{{ctrl.data.address}}</td>
+            <td>{{ctrl.data.city}}</td>
+            <td>{{ctrl.data.phone}}</td>
+            <td>{{ctrl.data.email}}</td>
+        </tr>
+    </table>
+    <uib-accordion>
+        <uib-accordion-group ng-repeat="company in ctrl.data.productionunits" heading={{company.name}} >
+            <table class="table">
+                <th>Address</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <tr>
+                    <td>{{company.address}}</td>
+                    <td>{{company.city}}</td>
+                    <td>{{company.phone}}</td>
+                    <td>{{company.email}}</td>
+                </tr>
+
+            </table>
+        </uib-accordion-group>
+
+    </uib-accordion>
 </div>
+</div>
+
 
 
 

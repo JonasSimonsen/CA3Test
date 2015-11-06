@@ -4,7 +4,6 @@ describe('myApp.view1 module', function() {
 
   beforeEach(module('myApp.view1'));
   
- //Mocks for the test
   beforeEach(module({
     InfoFactory: { getInfo: function() {return  "Factory"; }},
     InfoService: { getInfo: function() {return  "Service"; }}

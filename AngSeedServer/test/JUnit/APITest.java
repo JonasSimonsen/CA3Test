@@ -31,9 +31,7 @@ import rest.ApplicationConfig;
  */
 public class APITest {
 
-
     static Server server;
-
 
     public APITest() {
         baseURI = "http://localhost:8080/AngSeedServer";
@@ -160,7 +158,6 @@ public class APITest {
                 post("/login").
                 then().
                 statusCode(200).extract().asString();
-
         given().
                 contentType("application/json").
                 header("Authorization", "Bearer " + from(json).get("token")).
@@ -209,7 +206,7 @@ public class APITest {
     public void TestSaverUser() {
         String json = given().
                 contentType("application/json").
-                body("{'username':'asd','password':'test'}").
+                body("{'username':'test','password':'test'}").
                 when().
                 post("/saveUser").
                 then().
@@ -217,8 +214,8 @@ public class APITest {
     }
 
     @Test
-    public void TestSearch(){
-                String json = given().
+    public void TestSearch() {
+        String json = given().
                 contentType("application/json").
                 body("{'username':'user','password':'test'}").
                 when().
@@ -226,10 +223,10 @@ public class APITest {
                 then().
                 statusCode(200).extract().asString();
         given().
-                 contentType("application/json").
+                contentType("application/json").
                 header("Authorization", "Bearer " + from(json).get("token")).
                 get("/search/3167 8021/100/Denmark").
                 then().
-                statusCode(200);    
+                statusCode(200);
     }
 }
