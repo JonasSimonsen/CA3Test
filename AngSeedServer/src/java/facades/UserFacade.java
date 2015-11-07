@@ -1,5 +1,6 @@
 package facades;
 
+import deploy.DeploymentConfiguration;
 import entity.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -10,50 +11,31 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import security.PasswordHash;
 
-public class UserFacade
-{
+public class UserFacade {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
 
-//  private final  Map<String, Users> users = new HashMap<>();
+    public UserFacade() {
 
-    public UserFacade()
-    {
-        //Test Users
-//    Users user = new Users("user","test");
-//    user.AddRole("Users");
-//    users.put(user.getUserName(),user );
-//    Users admin = new Users("admin","test");
-//    admin.AddRole("Admin");
-//    users.put(admin.getUserName(),admin);
-//    
-//    Users both = new Users("user_admin","test");
-//    both.AddRole("Users");
-//    both.AddRole("Admin");
-//    users.put(both.getUserName(),both );
     }
 
-    EntityManager getEntityManager()
-    {
+    EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public User saveUser(User user)
-    {
+    public User saveUser(User user) {
         EntityManager em = getEntityManager();
-        try
-        {
+        try {
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();
             return em.find(User.class, user.getUserName());
-        } finally
-        {
+        } finally {
             em.close();
         }
     }
-    
-        public User deleteUser(String username) {
+
+    public User deleteUser(String username) {
         EntityManager em = getEntityManager();
         try {
             User p = em.find(User.class, username);
@@ -66,8 +48,7 @@ public class UserFacade
         }
     }
 
-    public User getUserByUserId(String userName)
-    {
+    public User getUserByUserId(String userName) {
         EntityManager em = getEntityManager();
         return em.find(User.class, userName);
     }
@@ -75,14 +56,13 @@ public class UserFacade
      Return the Roles if users could be authenticated, otherwise null
      */
 
-    public List<String> authenticateUser(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException
-    {
+    public List<String> authenticateUser(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         User user = getUserByUserId(userName);
         //Compares password to the hashed version
-        return user != null && PasswordHash.validatePassword(password, user.getPassword()) ? user.getRoles() : null;   
+        return user != null && PasswordHash.validatePassword(password, user.getPassword()) ? user.getRoles() : null;
     }
-    
-        public List<User> getAllUsers() { //finished
+
+    public List<User> getAllUsers() { //finished
         EntityManager em = null;
         try {
             em = getEntityManager();

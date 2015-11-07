@@ -1,6 +1,7 @@
 package facades;
 
 
+import deploy.DeploymentConfiguration;
 import entity.CurrencyRates;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -11,7 +12,7 @@ import javax.persistence.Query;
 
 public class CurrencyFacade {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
     private EntityManager em = emf.createEntityManager();
     
     public void addCurrenciesToDB(List<CurrencyRates> currencyRates) {

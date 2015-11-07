@@ -17,7 +17,7 @@ public class BackgroundManager implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(new XmlReaderDemo(), 0, 1, TimeUnit.HOURS);
+        scheduler.scheduleAtFixedRate(new XmlReaderDemo(), 0, 24, TimeUnit.HOURS);
         
     }
 

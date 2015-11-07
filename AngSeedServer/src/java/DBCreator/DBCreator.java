@@ -5,6 +5,7 @@
  */
 package DBCreator;
 
+import deploy.DeploymentConfiguration;
 import entity.User;
 import facades.UserFacade;
 import java.security.NoSuchAlgorithmException;
@@ -22,7 +23,7 @@ public class DBCreator {
 
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA3PU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         EntityManager em = emf.createEntityManager();
 
         UserFacade uf = new UserFacade();

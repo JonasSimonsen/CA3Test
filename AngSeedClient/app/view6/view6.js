@@ -16,10 +16,8 @@ angular.module('myApp.view6', ['ngRoute'])
             
             $scope.saveUser = function () {
                 $scope.message = "Registration successful!";
-//                alert('User');
                 $http.post('api/saveUser', $scope.user).
                         success(function () {
-//                            alert('User Created');
                           });
             };
         });
